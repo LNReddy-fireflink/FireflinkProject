@@ -1,0 +1,32 @@
+package basics;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class JavaScriptClick3Test {
+	
+	@Test(groups = "regression")
+	public void testCase() {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().window().maximize();
+		driver.get("https://demowebshop.tricentis.com/");
+		driver.findElement(By.xpath("//a[text()='Log in']")).click();
+		driver.findElement(By.id("Email")).sendKeys("lnreddy1223@gmail.com");
+		driver.findElement(By.id("Password")).sendKeys("LNReddy@23");
+		driver.findElement(By.xpath("//input[@type='submit' and @value='Log in']")).click();
+		driver.findElement(By.linkText("Contact us")).click();
+		driver.findElement(By.id("Enquiry")).sendKeys("not able to place the order");
+		driver.findElement(By.name("send-email")).click();
+		String data = driver.findElement(By.xpath("//div[@class='result']")).getText();
+		System.out.println(data);
+	}
+
+}
