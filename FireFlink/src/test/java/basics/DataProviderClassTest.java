@@ -32,5 +32,4 @@ public class DataProviderClassTest {
 		driver.close();
 	}
 	
-
 }
